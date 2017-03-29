@@ -10,7 +10,7 @@ class Email extends Model
     public    $timestamps = false;
 
     protected $fillable = [
-        'message_id', 'from', 'to', 'subject',
+        'key', 'from', 'to', 'subject',
         'date', 'vendor', 'vendor_response',
         'vendor_status', 'vendor_message_id',
         'vendor_error'

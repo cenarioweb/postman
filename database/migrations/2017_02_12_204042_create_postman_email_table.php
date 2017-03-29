@@ -10,7 +10,7 @@ class CreatePostmanEmailTable extends Migration
     {
         Schema::create('postman_email', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('message_id')->unique();
+            $table->string('key')->unique();
             $table->string('from');
             $table->string('to');
             $table->string('subject');

@@ -14,11 +14,13 @@ class CreatePostmanEmailLogTable extends Migration
             $table->timestamp('date');
             $table->string('event');
             $table->string('url')->nullable();
+
+            $table->foreign('email_id')->references('id')->on('postman_email');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('postman_email');
+        Schema::dropIfExists('postman_email_log');
     }
 }
