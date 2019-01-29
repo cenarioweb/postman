@@ -58,7 +58,11 @@ class Postman
                 $this->result['message_id'] = str_replace("\r", "", $response->headers()[6]);
                 $this->result['message_id'] = str_replace("X-Message-Id: ", "", $this->result['message_id']);
             } else {
-                $this->result['error'] = json_decode($response->body())->errors[0]->message;
+                try {
+                    $this->result['error'] = json_decode($response->body())->errors[0]->message;
+                } catch(\Exception $e) {
+                    $this->result['error'] = 'Erro ao tentar enviar um email. Code error: ' . $response->statusCode() ;
+                }
             }
 
             $message->vendor_response = $this->result['result'];
