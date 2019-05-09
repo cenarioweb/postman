@@ -45,6 +45,17 @@ class Postman
                 $mail->addCategory($cat);
             }
 
+            if (isset($attributes['files'])) {
+                foreach ($attributes['files'] as $file) {
+                    $attachment = new SendGrid\Attachment();
+                    $attachment->setContent(base64_encode(file_get_contents($file['path'])));
+                    $attachment->setType($file['mimetype']);
+                    $attachment->setFilename($file['name']);
+                    $attachment->setDisposition('attachment');
+                    $mail->addAttachment($attachment);
+                }
+            }
+
             $mail->addCustomArg('message_id', $message->id);
             $mail->addCustomArg('message_key', $message->key);
 
