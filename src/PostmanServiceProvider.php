@@ -7,6 +7,11 @@ use Illuminate\Support\ServiceProvider;
 
 class PostmanServiceProvider extends ServiceProvider
 {
+    public function register()
+    {
+        $this->boot();
+    }
+
     public function boot()
     {
         $this->registerRoutes();
